@@ -1,7 +1,6 @@
 package pages;
 
 import core.context.TestContext;
-import core.drivers.DriverManager;
 import core.waits.WaitFactory;
 import core.waits.WaitResolver;
 import core.waits.WaitStrategy;
