@@ -4,6 +4,9 @@ import core.context.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.RegisterPage;
@@ -39,5 +42,11 @@ public class StepDefinition {
     @Test
     public void test() throws InterruptedException {
         Thread.sleep(10);
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        WebDriver driver = new ChromeDriver();
+        driver.quit();
     }
 }

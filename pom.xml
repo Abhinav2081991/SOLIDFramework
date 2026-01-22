@@ -20,7 +20,12 @@
         <sonar.sources>src/main/java</sonar.sources>
         <sonar.tests>src/test/java</sonar.tests>
         <sonar.qualityprofile>TestQualityProfile</sonar.qualityprofile>
-<!--        <sonar.token>sqa_988ad24dd9ca8cf562d733aec4e255f8477ffe7b</sonar.token>-->
+        <sonar.java.test.binaries>target/classes</sonar.java.test.binaries>
+        <sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
+        <sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
+        <sonar.language>java</sonar.language>
+        <sonar.log.level>true</sonar.log.level>
+        <sonar.token>sqa_988ad24dd9ca8cf562d733aec4e255f8477ffe7b</sonar.token>
 
         <!-- Selenium / Cucumber specific -->
         <sonar.exclusions>
@@ -231,6 +236,10 @@
                             <goals>
                                 <goal>report</goal>
                             </goals>
+                            <configuration>
+<!--                                <dataFile>target/jacoco.exec</dataFile>-->
+                                <outputDirectory>target/coverage-report</outputDirectory>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
