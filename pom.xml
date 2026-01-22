@@ -19,6 +19,7 @@
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
         <sonar.sources>src/main/java</sonar.sources>
         <sonar.tests>src/test/java</sonar.tests>
+        <sonar.qualityprofile>TestQualityProfile</sonar.qualityprofile>
 <!--        <sonar.token>sqa_988ad24dd9ca8cf562d733aec4e255f8477ffe7b</sonar.token>-->
 
         <!-- Selenium / Cucumber specific -->

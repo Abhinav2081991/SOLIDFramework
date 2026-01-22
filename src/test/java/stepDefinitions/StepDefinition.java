@@ -4,6 +4,7 @@ import core.context.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.RegisterPage;
 
@@ -33,5 +34,10 @@ public class StepDefinition {
     @Then("I am able to successfully register")
     public void i_am_able_to_successfully_register() {
         System.out.println("ss");
+    }
+
+    @Test
+    public void test() throws InterruptedException {
+        Thread.sleep(10);
     }
 }
