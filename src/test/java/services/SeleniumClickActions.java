@@ -15,6 +15,6 @@ public class SeleniumClickActions implements ClickActions{
 
     @Override
     public void click(WebElement element) {
-        waitResolver.resolve(WaitType.CLICK).waitFor(element,10).click();
+       waitResolver.resolve(WaitType.CLICK).waitFor(element,10).click();
     }
 }

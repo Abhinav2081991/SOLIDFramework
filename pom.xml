@@ -13,6 +13,20 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <suiteXMLFile>testng.xml</suiteXMLFile>
+        <sonar.projectKey>SOLIDFramework</sonar.projectKey>
+        <sonar.projectName>SOLIDFramework</sonar.projectName>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <sonar.sources>src/main/java</sonar.sources>
+        <sonar.tests>src/test/java</sonar.tests>
+<!--        <sonar.token>sqa_988ad24dd9ca8cf562d733aec4e255f8477ffe7b</sonar.token>-->
+
+        <!-- Selenium / Cucumber specific -->
+        <sonar.exclusions>
+            **/target/**,
+            **/generated/**,
+            **/*Runner.java
+        </sonar.exclusions>
     </properties>
     <dependencies>
 
@@ -184,6 +198,40 @@
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <parallel>methods</parallel>
+                        <threadCount>2</threadCount>
+                        <testFailureIgnore>true</testFailureIgnore>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.9.1.2184</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.10</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <!--  default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging  -->
                 <plugin>

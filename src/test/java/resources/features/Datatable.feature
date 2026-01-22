@@ -26,3 +26,12 @@ Given I am using a Datatable using NestedPojo
   | John1      | Doe1         | London1 | 1231  |
   | John2      | Doe2     | London2 | 1232   |
 
+  @Datatable4
+  Scenario:
+    Given I am using a Datatable for Scenario Context
+      | firstName | lastName  | city       | zip      |
+      | John      | Doe        | London     | 123      |
+      | John1      | Doe1         | London1 | 1231  |
+      | John2      | Doe2     | London2 | 1232   |
+    Then I am validating the same in the UI
+
