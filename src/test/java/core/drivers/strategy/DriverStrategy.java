@@ -1,4 +1,4 @@
-package core.drivers;
+package core.drivers.strategy;
 
 import org.openqa.selenium.WebDriver;
 

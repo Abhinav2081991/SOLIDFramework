@@ -2,11 +2,11 @@ package stepDefinitions;
 
 import core.drivers.DriverFactory;
 import core.drivers.DriverManager;
-import core.drivers.DriverStrategy;
+import core.drivers.enums.BrowserType;
+import core.drivers.strategy.DriverStrategy;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;
 
@@ -15,8 +15,7 @@ public class Hooks {
     @Before
     public void setup( Scenario scenario) throws MalformedURLException {
         scenario.log("Test Setup");
-        DriverStrategy driverStrategy = DriverFactory.getDriverStrategy("Chrome");
-        DriverFactory.initDriver(driverStrategy);
+        DriverFactory.initDriver();
         DriverManager.getDriver().get("https://demo.automationtesting.in/Register.html");
     }
 

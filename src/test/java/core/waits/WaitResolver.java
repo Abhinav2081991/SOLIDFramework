@@ -21,7 +21,6 @@ public class WaitResolver {
          }else {
              return strategies.get(waitType);
          }
-
      }
 
 }
