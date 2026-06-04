@@ -1,6 +1,5 @@
 package services;
 
-import core.context.TestContext;
 import core.waits.WaitResolver;
 import core.waits.WaitType;
 import org.openqa.selenium.WebElement;

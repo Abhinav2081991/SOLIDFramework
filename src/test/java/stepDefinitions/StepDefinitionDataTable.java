@@ -20,7 +20,7 @@ public class StepDefinitionDataTable {
     @Given("I am using a datatable as maps")
     public void i_am_using_a_datatable_as_maps(DataTable datatable) {
         // Write code here that turns the phrase above into concrete actions
-
+        System.out.println(datatable.asMap());
     }
     @Then("I can fetch data from Datatable")
     public void i_can_fetch_data_from_datatable() {
@@ -35,8 +35,15 @@ public class StepDefinitionDataTable {
         System.out.println( datatableMap.get(1).get("password"));
         System.out.println( datatableMap.get(1).get("EmployeeID"));
 
-        Map<String, String> datatableMap2  = dataTable.asMap(String.class, String.class);
-        System.out.println( datatableMap.get(2).get("EmployeeID"));
+        //Looping through the list of HashMap.
+        for(Map<String,String> map: datatableMap){
+            map.get("username");
+            map.get("password");
+            map.get("EmployeeID");
+        }
+
+//        Map<String, String> datatableMap2  = dataTable.asMap(String.class, String.class);
+//        System.out.println( datatableMap.get(2).get("EmployeeID"));
 
     }
 

@@ -7,12 +7,16 @@ import java.util.Map;
 
 public class WaitResolver {
 
-    private final Map<WaitType, WaitStrategy> strategies = new HashMap<>();
+    private Map<WaitType, WaitStrategy> strategies = new HashMap<>();
 
-     public  WaitResolver(WebDriver driver){
-         strategies.put(WaitType.CLICK, new ClickableWaitStrategy(driver));
-         strategies.put(WaitType.VISIBLE, new VisibleWaitStrategy(driver));
-     }
+//     public  WaitResolver(WebDriver driver){
+//         strategies.put(WaitType.CLICK, new ClickableWaitStrategy(driver));
+//         strategies.put(WaitType.VISIBLE, new VisibleWaitStrategy(driver));
+//     }
+
+    public WaitResolver(Map<WaitType, WaitStrategy> strategies){
+        this.strategies = strategies;
+    }
 
      public WaitStrategy resolve(WaitType waitType){
 

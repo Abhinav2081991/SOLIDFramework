@@ -1,34 +1,43 @@
 package stepDefinitions;
 
+import BusinessSteps.RegistrationSteps;
 import core.context.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import pages.BasePage;
-import pages.RegisterPage;
 
 public class StepDefinition {
 
-    BasePage basePage;
-    RegisterPage registerPage;
+//    BasePage basePage;
+//    RegisterPage registerPage;
+    RegistrationSteps registrationSteps;
 
     public  StepDefinition(TestContext testContext){
-        this.basePage = new BasePage(testContext);
-        this.registerPage = new RegisterPage(testContext);
+//        this.basePage = new BasePage(testContext);
+//        this.registerPage = new RegisterPage(testContext);
+        registrationSteps = new RegistrationSteps(testContext);
+
     }
 
     @Given("I am on the Register page of Automation Practice url")
     public void i_am_on_the_register_page_of_automation_practice_url() {
-//        registerPage.fillForm();
+/*//        registerPage.fillForm();
         registerPage.fillFormUsingISP();
+//        registerPage.fillFormUsingDecorator();
+        System.out.println("sdfsdfsdf");*/
+        registrationSteps.RegisterUser();
+
+
     }
+
     @When("I enter the details in the form")
     public void i_enter_the_details_in_the_form() {
-        System.out.println("ss");
+
+//        registerPage.fillFormUsingDecorator();  // SUage of
+
+    System.out.println("ss");
     }
     @When("I CLick on submit button")
     public void i_c_lick_on_submit_button() {
@@ -39,12 +48,12 @@ public class StepDefinition {
         System.out.println("ss");
     }
 
-    @Test
+//    @Test
     public void test() throws InterruptedException {
         Thread.sleep(10);
     }
 
-    @AfterMethod
+//    @AfterMethod
     public void tearDown(){
         WebDriver driver = new ChromeDriver();
         driver.quit();

@@ -11,8 +11,9 @@ import org.testng.annotations.DataProvider;
         dryRun = false,
         monochrome = true,
         plugin = {"html:target/cucumber-reports/cucumber-report.json","pretty","json:target/cucumber-reports/cucumber-report.json"},
-        tags = "@Main"
-//tags = "~@Main or @Datatable1"
+        snippets = CucumberOptions.SnippetType.UNDERSCORE
+//        tags = "@Main"
+//,tags = "~@Main or @Datatable1"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 

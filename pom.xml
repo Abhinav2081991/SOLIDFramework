@@ -22,17 +22,24 @@
         <sonar.qualityprofile>TestQualityProfile</sonar.qualityprofile>
         <sonar.java.test.binaries>target/classes</sonar.java.test.binaries>
         <sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
-        <sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
+        <sonarjacocoreportPaths>target/site/jacoco/jacoco.xml</sonarjacocoreportPaths>
         <sonar.language>java</sonar.language>
         <sonar.log.level>true</sonar.log.level>
         <sonar.token>sqa_988ad24dd9ca8cf562d733aec4e255f8477ffe7b</sonar.token>
-
         <!-- Selenium / Cucumber specific -->
         <sonar.exclusions>
-            **/target/**,
+<!--            **/target/**,-->
             **/generated/**,
             **/*Runner.java
         </sonar.exclusions>
+        <cucumberfiltertags>@Datatable</cucumberfiltertags>
+<!--        <cucumberfeatures>src/test/java/resources/features/Datatable.feature</cucumberfeatures>-->
+<!--        <cucumberglue>stepDefinitions</cucumberglue>-->
+<!--&lt;!&ndash;        <cucumberplugin>html:target/cucumber-reports/cucumber-report.json","pretty","json:target/cucumber-reports/cucumber-report.json</cucumberplugin>&ndash;&gt;-->
+<!--        <cucumberexecutiondry-run>false</cucumberexecutiondry-run>-->
+<!--        <cucumberexecutionfail-fast>false</cucumberexecutionfail-fast>-->
+<!--        <cucumberexecutionparallelenabled>false</cucumberexecutionparallelenabled>-->
+<!--        <cucumberfiltername>Scenario 2</cucumberfiltername>-->
     </properties>
     <dependencies>
 
@@ -161,8 +168,11 @@
                             <configuration>
                                 <includes>
                                     <include>**/TestNGRunner.java</include>
-                                    <!--                                   This means look for TestNGRunner class in the whole Project-->
+                                    <!-- This means look for TestNGRunner class in the whole Project-->
                                 </includes>
+                                <systemPropertyVariables>
+                                    <cucumber.filter.tags>${cucumberfiltertags}</cucumber.filter.tags>
+                                </systemPropertyVariables>
                             </configuration>
                         </plugin>
                         <plugin>
@@ -213,35 +223,22 @@
                         <parallel>methods</parallel>
                         <threadCount>2</threadCount>
                         <testFailureIgnore>true</testFailureIgnore>
+                        <systemPropertyVariables>
+                            <cucumber.filter.tags>${cucumberfiltertags}</cucumber.filter.tags>
+<!--                            <cucumber.features>${cucumberfeatures}</cucumber.features>-->
+<!--                            <cucumber.glue>${cucumberglue}</cucumber.glue>-->
+<!--                            <cucumber.plugin>${cucumberplugin}</cucumber.plugin>-->
+<!--                            <cucumber.execution.dry-run>${cucumberexecutiondry-run}</cucumber.execution.dry-run>-->
+<!--                            <cucumber.execution.fail-fast>${cucumberexecutionfail-fast}</cucumber.execution.fail-fast>-->
+<!--                            <cucumber.execution.parallel.enabled>${cucumberexecutionparallelenabled}</cucumber.execution.parallel.enabled>-->
+<!--                            <cucumber.filter.name>${cucumberfiltername}</cucumber.filter.name>-->
+                        </systemPropertyVariables>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>3.9.1.2184</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.10</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>report</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                            <configuration>
-<!--                                <dataFile>target/jacoco.exec</dataFile>-->
-                                <outputDirectory>target/coverage-report</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
                 <!--  default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging  -->
                 <plugin>
@@ -272,6 +269,33 @@
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.11</version>
+                    <executions>
+                        <!-- Attach JaCoCo agent -->
+                        <execution>
+                            <id>prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <!-- Generate XML -->
+                        <execution>
+                            <id>report</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                            <configuration>
+                                <formats>
+                                    <format>XML</format>
+                                </formats>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

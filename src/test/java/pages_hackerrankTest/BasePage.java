@@ -1,7 +1,6 @@
-package pages;
+package pages_hackerrankTest;
 
 import core.context.TestContext;
-import core.drivers.DriverManager;
 import core.waits.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
